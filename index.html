@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <title>Kreditkarte</title>
+  </head>
+  <body>
+    <main>
+      <div id="container">
+        <output id="output-field"></output>
+        <form action="">
+          <label for="card-number-input">Card Number</label>
+          <input
+            type="number"
+            name="card-number-input"
+            id="card-number-input"
+            minlength="16"
+            maxlength="16"
+            required />
+          <label for="card-holder-input">Card Holder</label>
+          <input
+            type="text"
+            name="card-holder-input"
+            id="card-holder-input"
+            required />
+          <div>
+            <label for="date-input">Expiration Date (MM/JJ)</label>
+            <input type="month" name="date-input" id="date-input" required />
+            <label for="cvv-input">CVV</label>
+            <input type="number" name="cvv" id="cvv" required />
+          </div>
+          <button type="submit" id="submit-btn">Submit</button>
+        </form>
+      </div>
+    </main>
+    <script type="module" src="./app.ts"></script>
+  </body>
+</html>
