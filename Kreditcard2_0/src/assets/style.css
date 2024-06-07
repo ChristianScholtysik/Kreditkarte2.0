@@ -104,6 +104,7 @@ main {
   width: 100%;
   display: flex;
   align-items: center;
+  gap: 2rem;
 }
 
 #output-field {
@@ -179,37 +180,42 @@ button {
 button:hover {
   background-color: #45a049;
 }
-
 .credit-card {
-  width: 100%;
-  height: 180px;
-  background: linear-gradient(135deg, #3a3a3a, #4a4a4a);
-  color: white;
+  width: 300px;
+  height: 190px;
   border-radius: 15px;
+  background: linear-gradient(135deg, #1f4037, #99f2c8);
+  color: white;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  font-family: Arial, sans-serif;
+  font-family: "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin-bottom: 20px;
 }
 
-.card-header,
-.card-footer {
+.card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.chip {
-  width: 40px;
+.bank-name {
+  font-size: 18px;
+  font-weight: bold;
 }
 
-.visa-logo {
-  width: 60px;
+.chip {
+  width: 40px;
+  height: auto;
 }
 
 .card-number {
-  margin: 20px 0;
-  font-size: 1.2em;
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin: 10px 0;
+  text-align: center;
 }
 
 .card-details {
@@ -217,10 +223,37 @@ button:hover {
   justify-content: space-between;
 }
 
+.card-holder,
+.expiration-date {
+  text-align: left;
+}
+
 .label {
-  font-size: 0.75em;
+  font-size: 10px;
+  text-transform: uppercase;
 }
 
 .value {
-  font-size: 1em;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 5px; /* Ensure value appears below the label */
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.visa-logo {
+  width: 50px;
+  height: auto;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .credit-card {
+    width: 100%;
+    padding: 15px;
+  }
 }

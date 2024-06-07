@@ -1,5 +1,3 @@
-//!
-
 // Aufgabe
 
 // - Erstelle eine interaktive HTML-Seite, auf der Benutzer:innen mehrere Kreditkarteninformationen eingeben können.
@@ -39,9 +37,11 @@
 // * Löschfunktion:
 // - klickt man doppelt auf eine Kreditkarte, wird sie gelöscht
 
-import CreditCard from "./CreditCard";
+import CreditCard from "./src/CreditCard";
 
-const ouputField = document.getElementById("output-field") as HTMLOutputElement;
+const outputField = document.getElementById(
+  "output-field"
+) as HTMLOutputElement;
 const cardNumberInput = document.getElementById(
   "card-number-input"
 ) as HTMLInputElement;
@@ -52,99 +52,98 @@ const dateInput = document.getElementById("date-input") as HTMLInputElement;
 const cvvInput = document.getElementById("cvv-input") as HTMLInputElement;
 const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
 
-.
-
-__________
-
-const allCreditCards: Object [] = []
+const allCreditCards: CreditCard[] = [];
 
 // Funktion legt Eventlistener an
-submitBtn?.addEventListener("submit", (event: Event) => {
+submitBtn.addEventListener("click", (event: Event) => {
   event.preventDefault();
-  // Prüfung
-  // Bedingung 1
-  // Bedingung 2
-  validateExpirationDate()
-  // Bedingung 3
-  if (validateExpirationDate()){
-  const newCard = createCard(cardNumberInput.value, cardHolderInput.value, dateInput.value, cvvInput.value);
-  allCreditCards.push(newCard);
-  console.log(allCreditCards);
-}
-else event.preventDefault()
-})
+  console.log("Hello");
+  // // Prüfung
+  // cardNumberValidation();
+  // // Bedingung 1
+  // cvvValidation();
+  // // Bedingung 2
+  // validateExpirationDate();
+  // // Bedingung 3
+  // resultCard();
 
+  const isCardNumberValid = cardNumberValidation();
+  const isCvvValid = cvvValidation();
+  const isExpirationDateValid = validateExpirationDate();
+
+  if (isCardNumberValid && isCvvValid && isExpirationDateValid) {
+    const newCard = createCard(
+      Number(cardNumberInput.value),
+      cardHolderInput.value,
+      new Date(dateInput.value),
+      Number(cvvInput.value)
+    );
+    allCreditCards.push(newCard);
+    console.log(allCreditCards);
+    return resultCard();
+  } else {
+    console.error("Please correct the errors in the form.");
+  }
+});
 
 // Anlegen einer Card als Objekt
-function createCard(creditCardNumber: number, cardHolder: string, expirationDate: Date, cvv: number): CreditCard {
-  const newCard = new CreditCard();
-  newCard.creditCardNumber = creditCardNumber;
-  newCard.cardHolder = cardHolder;
-  newCard.expirationDate = expirationDate;
-  newCard.cvv = cvv;
-  return newCard;
+function createCard(
+  creditCardNumber: number,
+  cardHolder: string,
+  expirationDate: Date,
+  cvv: number
+): CreditCard {
+  return new CreditCard(creditCardNumber, cardHolder, expirationDate, cvv);
 }
 
 // * Bedingung 2:
 // - Überprüfung Ablaufdatum: Überprüfe, ob das Ablaufdatum in der Zukunft liegt.
-function validateExpirationDate() {
+function validateExpirationDate(): boolean {
   const currentDate = new Date();
-  const inputValue = new Date(dateInput.value)
-  // Setze den Tag auf den ersten Tag des Monats,
+  const inputValue = new Date(dateInput.value);
   inputValue.setDate(1);
-  if(inputValue < currentDate) {
-    alert("Das Ablaufdatum darf nicht in der Vergangenheit liegen.")
-=======
-
-
-
-
-//bedingung 1
-function cardNumberValidation () {
-  const cardNumberInputValue = cardNumberInput.value;
-  if (cardNumberInputValue.length !== 16) {
-    console.log("Die Länge der Kartennummer besteht nicht aus 16 Zeichen");
-    return false;
-  }if (!/^\d+$/.test(cardNumberInputValue)) {
-    console.log("Die Kartennummer enthält ungültige Zeichen");
+  if (inputValue < currentDate) {
+    console.error("Das Ablaufdatum darf nicht in der Vergangenheit liegen.");
     return false;
   }
   return true;
-  
+}
+
+//bedingung 1
+function cardNumberValidation(): boolean {
+  const cardNumberInputValue = cardNumberInput.value;
+  if (cardNumberInputValue.length !== 16) {
+    console.error("Die Länge der Kartennummer besteht nicht aus 16 Zeichen");
+    return false;
+  }
+  if (!/^\d+$/.test(cardNumberInputValue)) {
+    console.error("Die Kartennummer enthält ungültige Zeichen");
+    return false;
+  }
+  return true;
 }
 
 //bedingung 2
-function cvvValidation () {
+function cvvValidation(): boolean {
   const cvvInputValue = cvvInput.value;
   if (cvvInputValue.length !== 3) {
-    console.log("Die Länge der CVVnummer besteht nicht aus 3 Zeichen");
+    console.error("Die Länge der CVVnummer besteht nicht aus 3 Zeichen");
     return false;
   }
   if (!/^\d+$/.test(cvvInputValue)) {
-    console.log("Die CVVnummer enthält ungültige Zeichen");
-
+    console.error("Die CVVnummer enthält ungültige Zeichen");
     return false;
   }
   return true;
 }
 
-  
-
-
-=======
-
-
-
-
-
-const allCreditCards: CreditCard[] = [];
-
 function resultCard() {
-  const outputField = document.getElementById("outputField");
   if (outputField) {
-    allCreditCards.forEach((creditCard) => {
+    outputField.innerHTML = "";
+    allCreditCards.forEach((creditCard, index) => {
       const card = document.createElement("div");
       card.className = "credit-card";
+      card.dataset.index = index.toString();
 
       const cardHeader = document.createElement("div");
       cardHeader.className = "card-header";
@@ -152,7 +151,7 @@ function resultCard() {
       bankName.className = "bank-name";
       bankName.innerText = "NEO Bank";
       const chip = document.createElement("img");
-      chip.src = "./assets/img/chip.png";
+      chip.src = "./src/assets/img/chip.png";
       chip.alt = "Chip";
       chip.className = "chip";
       cardHeader.appendChild(bankName);
@@ -166,6 +165,7 @@ function resultCard() {
 
       const cardDetails = document.createElement("div");
       cardDetails.className = "card-details";
+
       const cardHolder = document.createElement("div");
       cardHolder.className = "card-holder";
       const cardHolderLabel = document.createElement("span");
@@ -184,7 +184,11 @@ function resultCard() {
       expirationDateLabel.innerText = "Valid Thru";
       const expirationDateValue = document.createElement("span");
       expirationDateValue.className = "value";
-      expirationDateValue.innerText = creditCard.expirationDate.toDateString();
+      const month = (creditCard.expirationDate.getMonth() + 1)
+        .toString()
+        .padStart(2, "0");
+      const year = creditCard.expirationDate.getFullYear().toString().slice(-2);
+      expirationDateValue.innerText = `${month}/${year}`;
       expirationDate.appendChild(expirationDateLabel);
       expirationDate.appendChild(expirationDateValue);
 
@@ -195,17 +199,24 @@ function resultCard() {
       const cardFooter = document.createElement("div");
       cardFooter.className = "card-footer";
       const visaLogo = document.createElement("img");
-      visaLogo.src = "./assets/img/visa_logo.png";
+      visaLogo.src = "./src/assets/img/visa_logo.png";
       visaLogo.alt = "Visa Logo";
       visaLogo.className = "visa-logo";
       cardFooter.appendChild(visaLogo);
       card.appendChild(cardFooter);
 
       outputField.appendChild(card);
+
+      card.addEventListener("dblclick", () => deleteCard(index));
+
+      outputField.appendChild(card);
     });
   }
 }
 
-resultCard(); //TODO: Delete!!
-
-
+//Karte löschen mit Doppelclick
+function deleteCard(index: number) {
+  allCreditCards.splice(index, 1);
+  console.log("New Array after Delete:", allCreditCards);
+  resultCard();
+}
