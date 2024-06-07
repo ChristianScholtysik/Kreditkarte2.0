@@ -38,3 +38,15 @@
 // - als Hintergrundbild(er) kannst du Bilder verwenden, die echten Kreditkarten ähneln
 // * Löschfunktion:
 // - klickt man doppelt auf eine Kreditkarte, wird sie gelöscht
+import CreditCard from "./CreditCard";
+
+const ouputField = document.getElementById("output-field") as HTMLOutputElement;
+const cardNumberInput = document.getElementById(
+  "card-number-input"
+) as HTMLInputElement;
+const cardHolderInput = document.getElementById(
+  "card-holder-input"
+) as HTMLInputElement;
+const dateInput = document.getElementById("date-input") as HTMLInputElement;
+const cvvInput = document.getElementById("cvv-input") as HTMLInputElement;
+const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
