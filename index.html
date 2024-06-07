@@ -25,11 +25,15 @@
             name="card-holder-input"
             id="card-holder-input"
             required />
-          <div>
-            <label for="date-input">Expiration Date (MM/JJ)</label>
-            <input type="month" name="date-input" id="date-input" required />
-            <label for="cvv-input">CVV</label>
-            <input type="number" name="cvv-input" id="cvv-input" required />
+          <div id="date-wrapper">
+            <div class="wrapper">
+              <label for="date-input">Expiration Date (MM/JJ)</label>
+              <input type="month" name="date-input" id="date-input" required />
+            </div>
+            <div class="wrapper">
+              <label for="cvv-input" id="cvv-label">CVV</label>
+              <input type="number" name="cvv-input" id="cvv-input" required />
+            </div>
           </div>
           <button type="submit" id="submit-btn">Submit</button>
         </form>
