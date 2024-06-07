@@ -51,3 +51,4 @@ const cardHolderInput = document.getElementById(
 const dateInput = document.getElementById("date-input") as HTMLInputElement;
 const cvvInput = document.getElementById("cvv-input") as HTMLInputElement;
 const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
+.
