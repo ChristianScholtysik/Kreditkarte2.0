@@ -52,6 +52,50 @@ const dateInput = document.getElementById("date-input") as HTMLInputElement;
 const cvvInput = document.getElementById("cvv-input") as HTMLInputElement;
 const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
 
+.
+
+__________
+
+const allCreditCards: Object [] = []
+
+// Funktion legt Eventlistener an
+submitBtn?.addEventListener("submit", (event: Event) => {
+  event.preventDefault();
+  // Prüfung
+  // Bedingung 1
+  // Bedingung 2
+  validateExpirationDate()
+  // Bedingung 3
+  if (validateExpirationDate()){
+  const newCard = createCard(cardNumberInput.value, cardHolderInput.value, dateInput.value, cvvInput.value);
+  allCreditCards.push(newCard);
+  console.log(allCreditCards);
+}
+else event.preventDefault()
+})
+
+
+// Anlegen einer Card als Objekt
+function createCard(creditCardNumber: number, cardHolder: string, expirationDate: Date, cvv: number): CreditCard {
+  const newCard = new CreditCard();
+  newCard.creditCardNumber = creditCardNumber;
+  newCard.cardHolder = cardHolder;
+  newCard.expirationDate = expirationDate;
+  newCard.cvv = cvv;
+  return newCard;
+}
+
+// * Bedingung 2:
+// - Überprüfung Ablaufdatum: Überprüfe, ob das Ablaufdatum in der Zukunft liegt.
+function validateExpirationDate() {
+  const currentDate = new Date();
+  const inputValue = new Date(dateInput.value)
+  // Setze den Tag auf den ersten Tag des Monats,
+  inputValue.setDate(1);
+  if(inputValue < currentDate) {
+    alert("Das Ablaufdatum darf nicht in der Vergangenheit liegen.")
+=======
+
 
 
 
@@ -78,10 +122,16 @@ function cvvValidation () {
   }
   if (!/^\d+$/.test(cvvInputValue)) {
     console.log("Die CVVnummer enthält ungültige Zeichen");
+
     return false;
   }
   return true;
 }
+
+  
+
+
+=======
 
 
 
@@ -157,4 +207,5 @@ function resultCard() {
 }
 
 resultCard(); //TODO: Delete!!
+
 
