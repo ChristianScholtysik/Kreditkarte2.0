@@ -1,0 +1,226 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f9;
+  margin: 0;
+}
+
+.credit-card {
+  width: 340px; /* Breite der Kreditkarte */
+  height: 212px; /* Höhe der Kreditkarte */
+  border-radius: 15px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  font-family: "Arial", sans-serif;
+  position: relative;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bank-name {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.chip {
+  width: 40px;
+  height: auto;
+}
+
+.card-number {
+  margin: 30px 0;
+  font-size: 1.4em;
+  letter-spacing: 2px;
+}
+
+.card-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-holder,
+.expiry-date {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.75em;
+  opacity: 0.7;
+}
+
+.value {
+  font-size: 1em;
+  margin-top: 5px;
+}
+
+.card-footer {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.visa-logo {
+  width: 60px;
+  height: auto;
+}
+
+body,
+main,
+div,
+form,
+label,
+input,
+button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  background-color: #f4f4f9;
+}
+
+#container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#output-field {
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 25rem;
+}
+
+label {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #333;
+}
+
+input {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  width: 100%;
+}
+
+#date-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+input[type="month"] {
+  padding: 10px;
+  /* width: calc(50% - 20px); */
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+#date-input {
+  margin-right: 20px;
+}
+
+#cvv-input {
+  margin-left: 40px;
+  padding: 10px;
+  /* width: calc(50% - 30px); */
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+#cvv-label {
+  margin-left: 150px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.credit-card {
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(135deg, #3a3a3a, #4a4a4a);
+  color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+}
+
+.card-header,
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chip {
+  width: 40px;
+}
+
+.visa-logo {
+  width: 60px;
+}
+
+.card-number {
+  margin: 20px 0;
+  font-size: 1.2em;
+}
+
+.card-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.label {
+  font-size: 0.75em;
+}
+
+.value {
+  font-size: 1em;
+}

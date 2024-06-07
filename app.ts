@@ -16,10 +16,10 @@
 // ? Funktion Submit:
 // - Über einen Button “Submit” wird geprüft, ob die Daten gültig sind und die Kreditkarte gespeichert
 //
-// * -> Speicherung als Objekt in Array unter Bedingung
+// * -> Speicherung als Objekt in Arraation unter Bedingung
 // * -> Klasse CreditCard
-// * -> Array Anlegen
-// - bei gültigen Daten wird eine Instanz einer Klasse CreditCard angelegt - die Kreditkarten sollen in einem Array verwaltet werden
+// * -> Arraation Anlegen
+// - bei gültigen Daten wird eine Instanz einer Klasse CreditCard angelegt - die Kreditkarten sollen in einem Arraation verwaltet werden
 // * -> Prüfung Gültigkeit/Validierung:
 // - Die Eingaben sollen alle validiert werden
 // * Bedingung 1:
@@ -38,7 +38,7 @@
 // - als Hintergrundbild(er) kannst du Bilder verwenden, die echten Kreditkarten ähneln
 // * Löschfunktion:
 // - klickt man doppelt auf eine Kreditkarte, wird sie gelöscht
-.
+
 import CreditCard from "./CreditCard";
 
 const ouputField = document.getElementById("output-field") as HTMLOutputElement;
@@ -51,4 +51,74 @@ const cardHolderInput = document.getElementById(
 const dateInput = document.getElementById("date-input") as HTMLInputElement;
 const cvvInput = document.getElementById("cvv-input") as HTMLInputElement;
 const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
-.
+
+const allCreditCards: CreditCard[] = [];
+
+function resultCard() {
+  const outputField = document.getElementById("outputField");
+  if (outputField) {
+    allCreditCards.forEach((creditCard) => {
+      const card = document.createElement("div");
+      card.className = "credit-card";
+
+      const cardHeader = document.createElement("div");
+      cardHeader.className = "card-header";
+      const bankName = document.createElement("span");
+      bankName.className = "bank-name";
+      bankName.innerText = "NEO Bank";
+      const chip = document.createElement("img");
+      chip.src = "./assets/img/chip.png";
+      chip.alt = "Chip";
+      chip.className = "chip";
+      cardHeader.appendChild(bankName);
+      cardHeader.appendChild(chip);
+      card.appendChild(cardHeader);
+
+      const cardNumber = document.createElement("div");
+      cardNumber.className = "card-number";
+      cardNumber.innerText = creditCard.creditCardNumber.toString();
+      card.appendChild(cardNumber);
+
+      const cardDetails = document.createElement("div");
+      cardDetails.className = "card-details";
+      const cardHolder = document.createElement("div");
+      cardHolder.className = "card-holder";
+      const cardHolderLabel = document.createElement("span");
+      cardHolderLabel.className = "label";
+      cardHolderLabel.innerText = "Card Holder";
+      const cardHolderValue = document.createElement("span");
+      cardHolderValue.className = "value";
+      cardHolderValue.innerText = creditCard.cardHolder;
+      cardHolder.appendChild(cardHolderLabel);
+      cardHolder.appendChild(cardHolderValue);
+
+      const expirationDate = document.createElement("div");
+      expirationDate.className = "expiration-date";
+      const expirationDateLabel = document.createElement("span");
+      expirationDateLabel.className = "label";
+      expirationDateLabel.innerText = "Valid Thru";
+      const expirationDateValue = document.createElement("span");
+      expirationDateValue.className = "value";
+      expirationDateValue.innerText = creditCard.expirationDate.toDateString();
+      expirationDate.appendChild(expirationDateLabel);
+      expirationDate.appendChild(expirationDateValue);
+
+      cardDetails.appendChild(cardHolder);
+      cardDetails.appendChild(expirationDate);
+      card.appendChild(cardDetails);
+
+      const cardFooter = document.createElement("div");
+      cardFooter.className = "card-footer";
+      const visaLogo = document.createElement("img");
+      visaLogo.src = "./assets/img/visa_logo.png";
+      visaLogo.alt = "Visa Logo";
+      visaLogo.className = "visa-logo";
+      cardFooter.appendChild(visaLogo);
+      card.appendChild(cardFooter);
+
+      outputField.appendChild(card);
+    });
+  }
+}
+
+resultCard(); //TODO: Delete!!
