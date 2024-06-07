@@ -52,6 +52,41 @@ const dateInput = document.getElementById("date-input") as HTMLInputElement;
 const cvvInput = document.getElementById("cvv-input") as HTMLInputElement;
 const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
 
+
+
+
+//bedingung 1
+function cardNumberValidation () {
+  const cardNumberInputValue = cardNumberInput.value;
+  if (cardNumberInputValue.length !== 16) {
+    console.log("Die Länge der Kartennummer besteht nicht aus 16 Zeichen");
+    return false;
+  }if (!/^\d+$/.test(cardNumberInputValue)) {
+    console.log("Die Kartennummer enthält ungültige Zeichen");
+    return false;
+  }
+  return true;
+  
+}
+
+//bedingung 2
+function cvvValidation () {
+  const cvvInputValue = cvvInput.value;
+  if (cvvInputValue.length !== 3) {
+    console.log("Die Länge der CVVnummer besteht nicht aus 3 Zeichen");
+    return false;
+  }
+  if (!/^\d+$/.test(cvvInputValue)) {
+    console.log("Die CVVnummer enthält ungültige Zeichen");
+    return false;
+  }
+  return true;
+}
+
+
+
+
+
 const allCreditCards: CreditCard[] = [];
 
 function resultCard() {
@@ -122,3 +157,4 @@ function resultCard() {
 }
 
 resultCard(); //TODO: Delete!!
+
