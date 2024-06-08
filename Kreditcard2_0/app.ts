@@ -104,6 +104,7 @@ function validateExpirationDate(): boolean {
   inputValue.setDate(1);
   if (inputValue < currentDate) {
     console.error("Das Ablaufdatum darf nicht in der Vergangenheit liegen.");
+    alert("Das Ablaufdatum darf nicht in der Vergangenheit liegen.");
     return false;
   }
   return true;
@@ -114,10 +115,12 @@ function cardNumberValidation(): boolean {
   const cardNumberInputValue = cardNumberInput.value;
   if (cardNumberInputValue.length !== 16) {
     console.error("Die Länge der Kartennummer besteht nicht aus 16 Zeichen");
+    alert("Die Länge der Kartennummer besteht nicht aus 16 Zeichen");
     return false;
   }
   if (!/^\d+$/.test(cardNumberInputValue)) {
     console.error("Die Kartennummer enthält ungültige Zeichen");
+    alert("Die Kartennummer enthält ungültige Zeichen");
     return false;
   }
   return true;
@@ -128,10 +131,12 @@ function cvvValidation(): boolean {
   const cvvInputValue = cvvInput.value;
   if (cvvInputValue.length !== 3) {
     console.error("Die Länge der CVVnummer besteht nicht aus 3 Zeichen");
+    alert("Die Länge der CVVnummer besteht nicht aus 3 Zeichen");
     return false;
   }
   if (!/^\d+$/.test(cvvInputValue)) {
     console.error("Die CVVnummer enthält ungültige Zeichen");
+    alert("Die CVVnummer enthält ungültige Zeichen");
     return false;
   }
   return true;
@@ -141,20 +146,42 @@ function resultCard() {
   if (outputField) {
     outputField.innerHTML = "";
     allCreditCards.forEach((creditCard, index) => {
+      const gradients = [
+        "linear-gradient(45deg, #222282, #822888)",
+        "linear-gradient(45deg, #745558, red)",
+        "linear-gradient(45deg, #fad0c4, #ff63ff)",
+        "linear-gradient(45deg, #ff80d2, #fcb69f)",
+        "linear-gradient(45deg, blue, #fecfef)",
+        "linear-gradient(45deg, #a194fd, #c2e9fb)",
+        "linear-gradient(45deg, #d4fc79, #96e6a1)",
+        "linear-gradient(45deg, #84fab0, #8fd304)",
+        "linear-gradient(45deg, #a6c0fe, #f68084)",
+        "linear-gradient(45deg, green, #d57eeb)",
+      ];
+
       const card = document.createElement("div");
       card.className = "credit-card";
       card.dataset.index = index.toString();
+
+      const gradient = gradients[index % gradients.length];
+      card.style.background = gradient;
 
       const cardHeader = document.createElement("div");
       cardHeader.className = "card-header";
       const bankName = document.createElement("span");
       bankName.className = "bank-name";
       bankName.innerText = "NEO Bank";
+      const visaLogo = document.createElement("img");
+      visaLogo.src = "./src/assets/img/visa_logo.png";
+      visaLogo.alt = "Visa Logo";
+      visaLogo.className = "visa-logo";
+
       const chip = document.createElement("img");
       chip.src = "./src/assets/img/chip.png";
       chip.alt = "Chip";
       chip.className = "chip";
       cardHeader.appendChild(bankName);
+      cardHeader.appendChild(visaLogo);
       cardHeader.appendChild(chip);
       card.appendChild(cardHeader);
 
@@ -198,17 +225,16 @@ function resultCard() {
 
       const cardFooter = document.createElement("div");
       cardFooter.className = "card-footer";
-      const visaLogo = document.createElement("img");
-      visaLogo.src = "./src/assets/img/visa_logo.png";
-      visaLogo.alt = "Visa Logo";
-      visaLogo.className = "visa-logo";
-      cardFooter.appendChild(visaLogo);
+
       card.appendChild(cardFooter);
 
       outputField.appendChild(card);
 
       card.addEventListener("dblclick", () => deleteCard(index));
-
+      // card.addEventListener("dblclick", (event: Event) => {
+      //   event.preventDefault();
+      //   const cardIndex = event.currentTarget.dataset.index;
+      //   deleteCard(parseInt(cardIndex));
       outputField.appendChild(card);
     });
   }
